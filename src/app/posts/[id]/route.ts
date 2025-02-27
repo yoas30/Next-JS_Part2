@@ -33,3 +33,14 @@ export async function PUT ( request:NextRequest,
     }
     return NextResponse.json(posts[index])
 }
+
+export async function DELETE ( request:NextRequest, 
+    { params } : { params : { id : string }}) 
+{
+    const index = posts.findIndex(post => post.id === parseInt(params.id))
+    
+    posts.splice(index , 1)
+    return NextResponse.json({
+        message : `Delete by Id ${params.id} Sukses!`
+    })
+}
